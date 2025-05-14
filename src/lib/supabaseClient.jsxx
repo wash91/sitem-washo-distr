@@ -1,0 +1,48 @@
+
+    import React from 'react';
+    import { createClient } from '@supabase/supabase-js';
+
+    const SUPABASE_URL = "https://dhbnfkmcvndnenmpubom.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRoYm5ma21jdm5kbmVubXB1Ym9tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxNzQ1MTMsImV4cCI6MjA2Mjc1MDUxM30.DUHkxjHOzQYrJCMhKTrvlunjpOZ_kODtR8d1XLw4YR0";
+
+    let supabaseInstance = null;
+
+    if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+      try {
+        supabaseInstance = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log("Supabase client initialized successfully.");
+      } catch (error) {
+        console.error("Error creating Supabase client:", error);
+        supabaseInstance = null;
+      }
+    } else {
+      console.error(
+        "Supabase URL or Anon Key is missing. " +
+        "The application requires these credentials to connect to Supabase."
+      );
+    }
+
+    export const supabase = supabaseInstance;
+
+    export const getSupabaseClient = () => {
+      if (!supabaseInstance) {
+        console.warn("Supabase client requested before initialization or initialization failed. Attempting to reinitialize.");
+        if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+          try {
+            supabaseInstance = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log("Supabase client reinitialized successfully on getSupabaseClient.");
+            return supabaseInstance;
+          } catch (error) {
+            console.error("Error reinitializing Supabase client:", error);
+            supabaseInstance = null;
+            return null;
+          }
+        }
+      }
+      return supabaseInstance;
+    };
+
+    export const isSupabaseConnected = () => {
+      return supabaseInstance !== null;
+    };
+  
