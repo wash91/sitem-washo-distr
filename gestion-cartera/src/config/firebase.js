@@ -4,15 +4,15 @@ import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { getStorage } from 'firebase/storage';
 
-// TODO: Reemplaza esta configuración con tus credenciales de Firebase
-// Ve a: Firebase Console > Project Settings > General > Your apps > SDK setup and configuration
+// Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROJECT_ID.firebaseapp.com",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_PROJECT_ID.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyD3rEmKtjQDdStFMhS1w-qkN_FcuFas03g",
+  authDomain: "cartera-y-recaudacion.firebaseapp.com",
+  projectId: "cartera-y-recaudacion",
+  storageBucket: "cartera-y-recaudacion.firebasestorage.app",
+  messagingSenderId: "999526404673",
+  appId: "1:999526404673:web:26fbc0d1de436862a52cc0",
+  measurementId: "G-JRQCMFPE6F"
 };
 
 // Inicializar Firebase
